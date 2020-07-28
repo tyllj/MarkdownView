@@ -10,7 +10,7 @@ namespace Xam.Forms.Markdown
             this.Paragraph = new MarkdownStyle
             {
                 Attributes = FontAttributes.None,
-                FontSize = 12,
+                FontSize = 18,
             };
 
             this.Heading1 = new MarkdownStyle
@@ -63,6 +63,12 @@ namespace Xam.Forms.Markdown
                 FontSize = 12,
             };
 
+            this.Math = new MarkdownStyle()
+            {
+                Attributes = FontAttributes.None,
+                FontSize = 24
+            };
+
             this.Quote = new MarkdownStyle
             {
                 Attributes = FontAttributes.None,
@@ -112,6 +118,8 @@ namespace Xam.Forms.Markdown
         public MarkdownStyle Link { get; set; }
 
         public MarkdownStyle Code { get; set; }
+        
+        public MarkdownStyle Math { get; set; }
 
         public float Margin { get; set; } = 10;
     }

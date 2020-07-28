@@ -1,4 +1,8 @@
-﻿namespace Xam.Forms.Markdown
+﻿using CSharpMath.Forms;
+using Markdig;
+using Markdig.Extensions.Mathematics;
+
+namespace Xam.Forms.Markdown
 {
     using System.Linq;
     using Markdig.Syntax;
@@ -67,7 +71,7 @@
 
             if(!string.IsNullOrEmpty(this.Markdown))
             {
-                var parsed = Markdig.Markdown.Parse(this.Markdown);
+                var parsed = Markdig.Markdown.Parse(this.Markdown, new MarkdownPipelineBuilder().Use<MathExtension>().Build());
                 this.Render(parsed.AsEnumerable());
             }
 
@@ -95,7 +99,8 @@
                         {
                             if (blockLinks.Count > 1)
                             {
-                                var result = await Application.Current.MainPage.DisplayActionSheet("Open link", "Cancel", null, blockLinks.Select(x => x.Key).ToArray());
+                                var result = await Application.Current.MainPage.DisplayActionSheet("Open link",
+                                    "Cancel", null, blockLinks.Select(x => x.Key).ToArray());
                                 var link = blockLinks.FirstOrDefault(x => x.Key == result);
                                 NavigateToLink(link.Value);
                             }
@@ -104,7 +109,11 @@
                                 NavigateToLink(blockLinks.First().Value);
                             }
                         }
-                        catch (Exception) { }
+                        catch (Exception ex)
+                        {
+                            Debugger.Log(0,"",ex.ToString());
+                            Debugger.Break();
+                        }
                     }),
                 });
 
@@ -130,6 +139,10 @@
                     Render(quote);
                     break;
 
+                case MathBlock math:
+                    Render(math);
+                    break;
+                
                 case CodeBlock code:
                     Render(code);
                     break;
@@ -378,6 +391,14 @@
             });
         }
 
+        private void Render(MathBlock block)
+        {
+            var mathView = new MathView();
+            mathView.FontSize = Theme.Math.FontSize;
+            mathView.LaTeX = string.Join(Environment.NewLine, block.Lines);
+            stack.Children.Add(mathView);
+        }
+
         private FormattedString CreateFormatted(ContainerInline inlines, string family, FontAttributes attributes, Color foregroundColor, Color backgroundColor, float size)
         {
             var fs = new FormattedString();
@@ -426,7 +447,7 @@
 
                     var url = link.Url;
 
-                    if (!(url.StartsWith("http://") || url.StartsWith("https://")))
+                    if (!(url.StartsWith("http://") || url.StartsWith("https://") || url.StartsWith("local://")))
                     {
                         url = $"{this.RelativeUrlHost?.TrimEnd('/')}/{url.TrimStart('/')}";
                     }
