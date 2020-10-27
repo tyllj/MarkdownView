@@ -66,7 +66,7 @@ namespace Xam.Forms.Markdown
             this.Math = new MarkdownStyle()
             {
                 Attributes = FontAttributes.None,
-                FontSize = 24
+                FontSize = 32
             };
 
             this.Quote = new MarkdownStyle

@@ -46,11 +46,11 @@ namespace Xam.Forms.Markdown
 
         private bool isQuoted;
 
-        private List<View> queuedViews = new List<View>();
+        private readonly List<View> queuedViews = new List<View>();
 
         static void OnMarkdownChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var view = bindable as MarkdownView;
+            var view = (MarkdownView) bindable;
             view.RenderMarkdown();
         }
 
@@ -507,7 +507,7 @@ namespace Xam.Forms.Markdown
 
                 default:
                     Debug.WriteLine($"Can't render {inline.GetType()} inlines.");
-                    return null;
+                    return new Span[] {};
             }
         }
 
