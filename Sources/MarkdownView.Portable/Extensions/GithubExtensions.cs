@@ -1,7 +1,7 @@
-﻿namespace Xam.Forms.Markdown
-{
-    using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
+namespace Xam.Forms.MarkdownView.Extensions
+{
     /// <summary>
     /// A set o helper extensions for parsing Github common urls.
     /// </summary>

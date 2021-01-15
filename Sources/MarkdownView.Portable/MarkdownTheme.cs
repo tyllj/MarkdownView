@@ -1,8 +1,8 @@
 ﻿
-namespace Xam.Forms.Markdown
-{
-    using Xamarin.Forms;
+using Xamarin.Forms;
 
+namespace Xam.Forms.MarkdownView
+{
     public class MarkdownTheme
     {
         public MarkdownTheme()
@@ -66,7 +66,7 @@ namespace Xam.Forms.Markdown
             this.Math = new MarkdownStyle()
             {
                 Attributes = FontAttributes.None,
-                FontSize = 32
+                FontSize = 42
             };
 
             this.Quote = new MarkdownStyle

@@ -1,19 +1,18 @@
-﻿using CSharpMath.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using CSharpMath.Forms;
 using Markdig;
 using Markdig.Extensions.Mathematics;
+using Markdig.Syntax;
+using Markdig.Syntax.Inlines;
+using Xam.Forms.MarkdownView.Extensions;
+using Xamarin.Forms;
 
-namespace Xam.Forms.Markdown
+namespace Xam.Forms.MarkdownView
 {
-    using System.Linq;
-    using Markdig.Syntax;
-    using Markdig.Syntax.Inlines;
-    using Xamarin.Forms;
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.IO;
-    using Extensions;
-
     public class MarkdownView : ContentView
     {
         public Action<string> NavigateToLink { get; set; } = (s) => Device.OpenUri(new Uri(s));
