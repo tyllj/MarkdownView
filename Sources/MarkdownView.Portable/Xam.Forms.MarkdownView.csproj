@@ -26,12 +26,11 @@
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="CSharpMath" Version="0.4.2" />
-    <PackageReference Include="CSharpMath.Forms" Version="0.4.2" />
+    <PackageReference Include="CSharpMath" Version="0.5.0-beta" />
+    <PackageReference Include="CSharpMath.Forms" Version="0.5.0-beta" />
     <PackageReference Include="SonarAnalyzer.CSharp" Version="8.11.0.20529" />
-    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1142" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1874" />
     <PackageReference Include="Markdig" Version="0.20.0" />
-    <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
   </ItemGroup>
     
 </Project>
